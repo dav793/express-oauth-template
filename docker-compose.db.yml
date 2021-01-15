@@ -1,0 +1,16 @@
+version: '3.0' # specify docker-compose version
+
+# Define the services (i.e. containers) to be run
+services:
+  evicen-manager-database:
+    image: mongo:3.4.18-jessie            # image to build container from
+    ports:
+      - "27017:27017"
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - "${ROOT_PATH}/db:/data/db"
+      - "${ROOT_PATH}/out/log/mongodb:/var/log/mongodb/"
+      - "${ROOT_PATH}/out/db_dump:/usr/db_dump"
